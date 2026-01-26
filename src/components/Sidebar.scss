@@ -1,0 +1,56 @@
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background-color: #1f222b;
+  border-right: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 4px 0 12px rgba(0, 0, 0, 0.35);
+}
+
+.sidebar-nav {
+  padding: 1.25rem 0;
+}
+
+.sidebar-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  padding: 0.7rem 1.25rem;
+
+  color: #cfd3dc;
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  border-left: 4px solid transparent;
+  border-radius: 0; 
+
+  img {
+    width: 18px;
+    height: 18px;
+    opacity: 0.65;
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+
+    img {
+      opacity: 0.85;
+    }
+  }
+
+  &.active {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-left: 4px solid #1db954; // Spotify green
+
+    color: #ffffff;
+
+    img {
+      opacity: 1;
+    }
+  }
+}
+

@@ -1,0 +1,23 @@
+@use './variables' as *;
+@use './typography' as *;
+
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $primary-bg; // σκούρο background από τα mockups
+  color: $text-primary;
+}
+
+
+
+
+.full-box-link {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 55;
+  cursor: pointer;
+}

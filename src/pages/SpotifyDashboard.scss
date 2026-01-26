@@ -1,0 +1,81 @@
+.spotify-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (max-width: 650px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 16px;
+
+  @media (max-width: 1000px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-card {
+  border-radius: 12px;
+  padding: 16px;
+  min-height: 360px;
+
+}
+
+.chart-card__title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  opacity: 0.95;
+
+  span {
+    font-weight: 500;
+    opacity: 0.65;
+    margin-left: 6px;
+  }
+}
+
+
+
+
+
+.genre-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.9;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    white-space: nowrap;
+  }
+}
+
+.genre-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.genre-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
