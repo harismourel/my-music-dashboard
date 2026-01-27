@@ -10,6 +10,33 @@ const COLORS = [
   "rgba(90, 220, 255, 0.95)",
 ];
 
+/* ---------- Custom Tooltip ---------- */
+const CustomTooltip = ({ active, payload }) => {
+  if (active && payload && payload.length) {
+    const { name, value, fill } = payload[0];
+
+    return (
+      <div
+        style={{
+          background: "rgba(20, 24, 32, 0.92)",
+          border: "1px solid rgba(255,255,255,0.12)",
+          borderRadius: 10,
+          padding: "8px 12px",
+          color: fill, // 👈 ίδιο χρώμα με το slice
+          fontWeight: 600,
+          boxShadow: `0 0 12px ${fill}55`,
+        }}
+      >
+        <div style={{ fontSize: 13, opacity: 0.9 }}>{name}</div>
+        <div style={{ fontSize: 16 }}>{value}%</div>
+      </div>
+    );
+  }
+
+  return null;
+};
+
+/* ---------- Pie Chart ---------- */
 function GenreDistributionPieChart({ data }) {
   return (
     <div style={{ height: 210, width: "100%" }}>
@@ -31,13 +58,7 @@ function GenreDistributionPieChart({ data }) {
             ))}
           </Pie>
 
-          <Tooltip
-            contentStyle={{
-              background: "rgba(20, 24, 32, 0.92)",
-              border: "1px solid rgba(255,255,255,0.12)",
-              borderRadius: 10,
-            }}
-          />
+          <Tooltip content={<CustomTooltip />} />
         </PieChart>
       </ResponsiveContainer>
     </div>
