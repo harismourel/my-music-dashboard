@@ -11,7 +11,7 @@
   opacity: 0.95;
 }
 
-/* Scrollable list area */
+
 .toptracks__list {
   display: flex;
   flex-direction: column;
@@ -21,7 +21,7 @@
   padding-right: 6px;
 }
 
-/* nice scrollbar */
+
 .toptracks__list::-webkit-scrollbar {
   width: 8px;
 }
