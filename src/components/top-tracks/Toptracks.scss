@@ -1,0 +1,119 @@
+.toptracks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+}
+
+.toptracks__title {
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.95;
+}
+
+/* Scrollable list area */
+.toptracks__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+/* nice scrollbar */
+.toptracks__list::-webkit-scrollbar {
+  width: 8px;
+}
+.toptracks__list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+}
+.toptracks__list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 999px;
+}
+
+.toptracks__row {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 8px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.toptracks__row:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.toptracks__row.is-active {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.toptracks__rank {
+  width: 34px;
+  opacity: 0.7;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.toptracks__cover {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.toptracks__cover--placeholder {
+  background: linear-gradient(
+    135deg,
+    rgba(29, 185, 84, 0.35),
+    rgba(80, 150, 255, 0.25),
+    rgba(180, 120, 255, 0.18)
+  );
+  outline: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.toptracks__meta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.toptracks__name {
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toptracks__artist {
+  font-size: 0.78rem;
+  opacity: 0.7;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toptracks__player {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden; 
+}
+
+.toptracks__empty {
+  padding: 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  opacity: 0.75;
+}

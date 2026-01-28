@@ -3,6 +3,7 @@ import StatCard from "../components/cards/StatCard";
 import ListeningOverTimeChart from "../components/charts/ListeningOverTimeChart";
 import MusicDnaRadarChart from "../components/charts/MusicDnaRadarChart";
 import GenreDistributionPieChart from "../components/charts/GenreDistributionPieChart";
+import Toptracks from "../components/top-tracks/Toptracks";
 import "./SpotifyDashboard.scss";
 
 const GENRE_COLORS = [
@@ -40,6 +41,8 @@ const genreMock = [
   { genre: "Ambient", value: 8 },
   { genre: "Other", value: 6 },
 ];
+
+
 
 function SpotifyDashboard() {
   return (
@@ -123,7 +126,11 @@ function SpotifyDashboard() {
               </div>
             </div>
           </div>
-
+          <div className="col-12 col-xl-6 d-flex">
+            <div className="chart-card stat-card h-100 w-100">
+              <Toptracks />
+            </div>
+          </div>
           {/* αν θες δεύτερο panel δίπλα, το βάζουμε εδώ. Για τώρα το αφήνουμε άδειο */}
         </div>
       </div>
