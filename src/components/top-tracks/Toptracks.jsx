@@ -18,8 +18,6 @@ const mockTopTracks = [
 
 function TopTracks({ tracks = mockTopTracks }) {
   const safeTracks = useMemo(() => tracks.slice(0, 10), [tracks]);
-
-  // ✅ ΜΟΝΑΔΙΚΟ state
   const [activeTrack, setActiveTrack] = useState(null);
 
   return (
@@ -38,7 +36,7 @@ function TopTracks({ tracks = mockTopTracks }) {
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                setActiveTrack(track); // ✅ ΕΔΩ και μόνο
+                setActiveTrack(track); 
               }}
             >
               <span className="toptracks__rank">#{idx + 1}</span>
@@ -52,7 +50,6 @@ function TopTracks({ tracks = mockTopTracks }) {
         </div>
       </div>
 
-      {/* ✅ Player ανοίγει ΜΟΝΟ αν υπάρχει activeTrack */}
       {activeTrack && (
         <SpotifyBottomPlayer
           track={activeTrack}

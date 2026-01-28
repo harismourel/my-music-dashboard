@@ -10,7 +10,7 @@ const COLORS = [
   "rgba(90, 220, 255, 0.95)",
 ];
 
-/* ---------- Custom Tooltip ---------- */
+
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     const { name, value, fill } = payload[0];
@@ -22,7 +22,7 @@ const CustomTooltip = ({ active, payload }) => {
           border: "1px solid rgba(255,255,255,0.12)",
           borderRadius: 10,
           padding: "8px 12px",
-          color: fill, // 👈 ίδιο χρώμα με το slice
+          color: fill, 
           fontWeight: 600,
           boxShadow: `0 0 12px ${fill}55`,
         }}
@@ -36,7 +36,6 @@ const CustomTooltip = ({ active, payload }) => {
   return null;
 };
 
-/* ---------- Pie Chart ---------- */
 function GenreDistributionPieChart({ data }) {
   return (
     <div style={{ height: 210, width: "100%" }}>

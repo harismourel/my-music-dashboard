@@ -9,7 +9,6 @@ function SpotifyBottomPlayer({ track, onClose }) {
       className="spotify-bottom-player"
       onClick={(e) => e.stopPropagation()}
     >
-      {/* ❌ ΜΟΝΟ X – ΟΧΙ τίτλοι, ΟΧΙ meta */}
       <button
         className="spotify-bottom-player__close"
         onClick={(e) => {
@@ -23,7 +22,7 @@ function SpotifyBottomPlayer({ track, onClose }) {
       </button>
 
       <iframe
-        key={track.id} // ✅ force reload, no bugs
+        key={track.id} 
         src={`https://open.spotify.com/embed/track/${track.id}?theme=0`}
         width="100%"
         height="80"
