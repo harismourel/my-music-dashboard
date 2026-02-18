@@ -131,7 +131,6 @@ function SpotifyDashboard() {
               <Toptracks />
             </div>
           </div>
-          {/* αν θες δεύτερο panel δίπλα, το βάζουμε εδώ. Για τώρα το αφήνουμε άδειο */}
         </div>
       </div>
     </section>

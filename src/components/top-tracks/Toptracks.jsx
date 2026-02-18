@@ -43,7 +43,7 @@ function TopTracks({ tracks = mockTopTracks }) {
 
               <span className="toptracks__meta">
                 <span className="toptracks__name">{track.name}</span>
-                <span className="toptracks__artist">{track.artist}</span>
+                <span className="toptracks__artist font-size-12">{track.artist}</span>
               </span>
             </button>
           ))}

@@ -14,7 +14,7 @@ const Header = ({ activeTab }) => {
         <h1 className="mb-0">{tab?.title || 'My App'}</h1>
       </div>
 
-      <div className="header-filters">
+      <div className="header-filters font-12">
         <button>Last 7 Days</button>
         <button className="active">Last 30 Days</button>
         <button>All Time</button>
