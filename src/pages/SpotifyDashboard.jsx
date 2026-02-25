@@ -98,7 +98,7 @@ function SpotifyDashboard() {
       {/* Charts row 2: Genre Distribution (pie + legend in same card) */}
       <div className="container-fluid p-0 mt-4">
         <div className="row g-4 align-items-stretch">
-          <div className="col-12 col-md-6 d-flex">
+          <div className="col-12 col-md-12 col-lg-6 d-flex">
             <div className=" stat-card h-100 w-100">
               <div className="chart-card__title">Genre Distribution</div>
 
