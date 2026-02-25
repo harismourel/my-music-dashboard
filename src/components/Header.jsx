@@ -6,15 +6,15 @@ const Header = ({ activeTab }) => {
   const tab = tabInfo[activeTab];
 
   return (
-    <header className="text-white p-3 d-flex align-items-center header justify-content-between">
-      <div className="title d-flex align-items-center">
+    <header className="text-white p-3 row align-items-center header justify-content-between">
+      <div className="title d-flex align-items-center col-lg-6 mb-lg-0 mb-4">
         {tab?.icon && (
           <img src={tab.icon} alt={tab.title} width="38" height="38" className="me-3" />
         )}
         <h1 className="mb-0">{tab?.title || 'My App'}</h1>
       </div>
 
-      <div className="header-filters font-12">
+      <div className="header-filters font-12 col-lg-6 justify-content-lg-end">
         <button>Last 7 Days</button>
         <button className="active">Last 30 Days</button>
         <button>All Time</button>

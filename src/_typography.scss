@@ -78,6 +78,11 @@ h1,
         font-size: 36px;
         line-height: 47px;
     }
+
+      @media (max-width: 767px) {
+        font-size: 24px !important;
+        line-height: 29px;
+    }
 }
 
 h2,
