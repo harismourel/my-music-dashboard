@@ -11,7 +11,7 @@ const Header = ({ activeTab }) => {
         {tab?.icon && (
           <img src={tab.icon} alt={tab.title} width="38" height="38" className="me-3" />
         )}
-        <h1 className="mb-0">{tab?.title || 'My App'}</h1>
+        <h1 className="mb-0 ivypresto-bold">{tab?.title || 'My App'}</h1>
       </div>
 
       <div className="header-filters font-12 col-lg-6 justify-content-lg-end">
