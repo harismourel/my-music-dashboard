@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import StatCard from "../components/cards/StatCard";
 
 import CollectionValueChart from "../components/charts/CollectionValueChart";
+
 import CollectionGenresChart from "../components/charts/CollectionGenresChart";
+
 import CollectionFormatsChart from "../components/charts/CollectionFormatsChart";
 
 import TopRecords from "../components/discogs/TopRecords";
+
 import Wantlist from "../components/discogs/Wantlist";
 
 import "./DiscogsDashboard.scss";
@@ -14,7 +17,7 @@ import "./DiscogsDashboard.scss";
 const discogsStats = [
   {
     title: "Total Records",
-    value: "248",
+    value: "—",
   },
   {
     title: "Collection Value",
@@ -22,7 +25,7 @@ const discogsStats = [
   },
   {
     title: "Wantlist",
-    value: "73",
+    value: "—",
   },
   {
     title: "Most Valuable Record",
@@ -31,6 +34,107 @@ const discogsStats = [
 ];
 
 function DiscogsDashboard() {
+  const [totalRecords, setTotalRecords] = useState(null);
+
+  const [totalWantlist, setTotalWantlist] = useState(null);
+
+  useEffect(() => {
+    const fetchDiscogsData = async () => {
+      try {
+        // =========================
+        // COLLECTION
+        // =========================
+
+        const collectionResponse = await fetch(
+          "http://localhost:3000/api/discogs/collection"
+        );
+
+        if (!collectionResponse.ok) {
+          throw new Error(
+            "Could not load Discogs collection."
+          );
+        }
+
+        const collectionData =
+          await collectionResponse.json();
+
+        console.log(
+          "Discogs Collection:",
+          collectionData
+        );
+
+        const collectionCount =
+          collectionData.collection?.pagination?.items;
+
+        if (collectionCount !== undefined) {
+          setTotalRecords(collectionCount);
+        }
+
+        // =========================
+        // WANTLIST
+        // =========================
+
+        const wantlistResponse = await fetch(
+          "http://localhost:3000/api/discogs/wantlist"
+        );
+
+        if (!wantlistResponse.ok) {
+          throw new Error(
+            "Could not load Discogs wantlist."
+          );
+        }
+
+        const wantlistData =
+          await wantlistResponse.json();
+
+        console.log(
+          "Discogs Wantlist:",
+          wantlistData
+        );
+
+        const wantlistCount =
+          wantlistData.wantlist?.pagination?.items;
+
+        if (wantlistCount !== undefined) {
+          setTotalWantlist(wantlistCount);
+        }
+      } catch (error) {
+        console.error(
+          "Discogs error:",
+          error
+        );
+      }
+    };
+
+    fetchDiscogsData();
+  }, []);
+
+  const updatedDiscogsStats = discogsStats.map(
+    (stat) => {
+      if (stat.title === "Total Records") {
+        return {
+          ...stat,
+          value:
+            totalRecords !== null
+              ? totalRecords
+              : "—",
+        };
+      }
+
+      if (stat.title === "Wantlist") {
+        return {
+          ...stat,
+          value:
+            totalWantlist !== null
+              ? totalWantlist
+              : "—",
+        };
+      }
+
+      return stat;
+    }
+  );
+
   return (
     <section className="discogs-dashboard">
 
@@ -41,7 +145,7 @@ function DiscogsDashboard() {
       <div className="container-fluid p-0">
         <div className="row g-3">
 
-          {discogsStats.map((stat) => (
+          {updatedDiscogsStats.map((stat) => (
             <div
               className="col-12 col-md-6 col-xl-3"
               key={stat.title}
@@ -55,7 +159,6 @@ function DiscogsDashboard() {
 
         </div>
       </div>
-
 
       {/* =========================
           COLLECTION OVERVIEW
@@ -79,7 +182,6 @@ function DiscogsDashboard() {
             </div>
           </div>
 
-
           {/* Genres */}
 
           <div className="col-12 col-xl-4">
@@ -96,7 +198,6 @@ function DiscogsDashboard() {
 
         </div>
       </div>
-
 
       {/* =========================
           COLLECTION INSIGHTS
@@ -119,7 +220,6 @@ function DiscogsDashboard() {
             </div>
           </div>
 
-
           {/* Valuable Records */}
 
           <div className="col-12 col-xl-6">
@@ -133,19 +233,16 @@ function DiscogsDashboard() {
         </div>
       </div>
 
-
       {/* =========================
           WANTLIST
       ========================== */}
 
       <div className="container-fluid p-0">
-
         <div className="stat-card">
 
           <Wantlist />
 
         </div>
-
       </div>
 
     </section>

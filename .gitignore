@@ -1,2 +1,7 @@
 /node_modules
+
+# Environment variables
 .env
+
+# Discogs authentication
+server/discogs-token.json
