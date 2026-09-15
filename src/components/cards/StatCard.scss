@@ -16,3 +16,19 @@
 .stat-value {
   font-weight: 600;
 }
+
+.discogs-loader {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: discogs-spin 0.8s linear infinite;
+}
+
+@keyframes discogs-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -3,148 +3,95 @@ import React, { useEffect, useState } from "react";
 import StatCard from "../components/cards/StatCard";
 
 import CollectionValueChart from "../components/charts/CollectionValueChart";
-
 import CollectionGenresChart from "../components/charts/CollectionGenresChart";
-
 import CollectionFormatsChart from "../components/charts/CollectionFormatsChart";
-
 import TopRecords from "../components/discogs/TopRecords";
-
 import Wantlist from "../components/discogs/Wantlist";
 
 import "./DiscogsDashboard.scss";
 
 const discogsStats = [
-  {
-    title: "Total Records",
-    value: "—",
-  },
-  {
-    title: "Collection Value",
-    value: "€4,820",
-  },
-  {
-    title: "Wantlist",
-    value: "—",
-  },
-  {
-    title: "Most Valuable Record",
-    value: "€320",
-  },
+  { title: "Total Records", value: null },
+  { title: "Collection Value", value: "€4,820" },
+  { title: "Wantlist", value: null },
+  { title: "Most Valuable Record", value: "€320" },
 ];
 
 function DiscogsDashboard() {
-  const [totalRecords, setTotalRecords] = useState(null);
+  const [totalRecords, setTotalRecords] =
+    useState(null);
 
-  const [totalWantlist, setTotalWantlist] = useState(null);
+  const [totalWantlist, setTotalWantlist] =
+    useState(null);
+
+  const [isLoading, setIsLoading] =
+    useState(true);
 
   useEffect(() => {
-    const fetchDiscogsData = async () => {
+    const fetchDiscogsStats = async () => {
       try {
-        // =========================
-        // COLLECTION
-        // =========================
+        setIsLoading(true);
 
-        const collectionResponse = await fetch(
-          "http://localhost:3000/api/discogs/collection"
+        const response = await fetch(
+          "http://localhost:3000/api/discogs/stats"
         );
 
-        if (!collectionResponse.ok) {
+        if (!response.ok) {
           throw new Error(
-            "Could not load Discogs collection."
+            "Could not load Discogs stats."
           );
         }
 
-        const collectionData =
-          await collectionResponse.json();
+        const data = await response.json();
 
-        console.log(
-          "Discogs Collection:",
-          collectionData
-        );
+        console.log("Discogs Stats:", data);
 
-        const collectionCount =
-          collectionData.collection?.pagination?.items;
-
-        if (collectionCount !== undefined) {
-          setTotalRecords(collectionCount);
-        }
-
-        // =========================
-        // WANTLIST
-        // =========================
-
-        const wantlistResponse = await fetch(
-          "http://localhost:3000/api/discogs/wantlist"
-        );
-
-        if (!wantlistResponse.ok) {
-          throw new Error(
-            "Could not load Discogs wantlist."
-          );
-        }
-
-        const wantlistData =
-          await wantlistResponse.json();
-
-        console.log(
-          "Discogs Wantlist:",
-          wantlistData
-        );
-
-        const wantlistCount =
-          wantlistData.wantlist?.pagination?.items;
-
-        if (wantlistCount !== undefined) {
-          setTotalWantlist(wantlistCount);
-        }
+        setTotalRecords(data.totalRecords);
+        setTotalWantlist(data.totalWantlist);
       } catch (error) {
         console.error(
-          "Discogs error:",
+          "Discogs stats error:",
           error
         );
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    fetchDiscogsData();
+    fetchDiscogsStats();
   }, []);
 
-  const updatedDiscogsStats = discogsStats.map(
-    (stat) => {
+  const updatedDiscogsStats =
+    discogsStats.map((stat) => {
       if (stat.title === "Total Records") {
         return {
           ...stat,
-          value:
-            totalRecords !== null
-              ? totalRecords
-              : "—",
+          value: isLoading ? (
+            <span className="discogs-loader" />
+          ) : (
+            totalRecords
+          ),
         };
       }
 
       if (stat.title === "Wantlist") {
         return {
           ...stat,
-          value:
-            totalWantlist !== null
-              ? totalWantlist
-              : "—",
+          value: isLoading ? (
+            <span className="discogs-loader" />
+          ) : (
+            totalWantlist
+          ),
         };
       }
 
       return stat;
-    }
-  );
+    });
 
   return (
     <section className="discogs-dashboard">
-
-      {/* =========================
-          TOP STATS
-      ========================== */}
-
       <div className="container-fluid p-0">
         <div className="row g-3">
-
           {updatedDiscogsStats.map((stat) => (
             <div
               className="col-12 col-md-6 col-xl-3"
@@ -156,95 +103,59 @@ function DiscogsDashboard() {
               />
             </div>
           ))}
-
         </div>
       </div>
 
-      {/* =========================
-          COLLECTION OVERVIEW
-      ========================== */}
-
       <div className="container-fluid p-0">
         <div className="row g-4">
-
-          {/* Collection Value */}
-
           <div className="col-12 col-xl-8">
             <div className="chart-card stat-card h-100">
-
               <div className="chart-card__title">
                 Collection Value
                 <span> (Last 12 Months)</span>
               </div>
 
               <CollectionValueChart />
-
             </div>
           </div>
 
-          {/* Genres */}
-
           <div className="col-12 col-xl-4">
             <div className="chart-card stat-card h-100">
-
               <div className="chart-card__title">
                 Genres
               </div>
 
               <CollectionGenresChart />
-
             </div>
           </div>
-
         </div>
       </div>
 
-      {/* =========================
-          COLLECTION INSIGHTS
-      ========================== */}
-
       <div className="container-fluid p-0">
         <div className="row g-4">
-
-          {/* Formats */}
-
           <div className="col-12 col-xl-6">
             <div className="chart-card stat-card h-100">
-
               <div className="chart-card__title">
                 Collection Formats
               </div>
 
               <CollectionFormatsChart />
-
             </div>
           </div>
-
-          {/* Valuable Records */}
 
           <div className="col-12 col-xl-6">
             <div className="chart-card stat-card h-100">
-
               <TopRecords />
-
             </div>
           </div>
-
         </div>
       </div>
-
-      {/* =========================
-          WANTLIST
-      ========================== */}
 
       <div className="container-fluid p-0">
         <div className="stat-card">
-
           <Wantlist />
-
         </div>
       </div>
-
     </section>
   );
 }
