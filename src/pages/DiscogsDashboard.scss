@@ -1,0 +1,178 @@
+.discogs-dashboard {
+  width: 100%;
+
+  > .container-fluid {
+    margin-bottom: 1.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+
+/* =========================
+   CHARTS
+========================= */
+
+.chart-wrapper {
+  width: 100%;
+  min-height: 280px;
+}
+
+
+/* =========================
+   TOP RECORDS
+========================= */
+
+.discogs-list {
+  width: 100%;
+}
+
+
+.discogs-list__items {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.discogs-list__item {
+  display: flex;
+  align-items: center;
+
+  gap: 1rem;
+
+  padding: 0.85rem 0;
+
+  border-bottom: 1px solid rgba(
+    255,
+    255,
+    255,
+    0.08
+  );
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+
+.discogs-list__rank {
+  width: 25px;
+
+  font-size: 14px;
+
+  opacity: 0.5;
+}
+
+
+.discogs-list__info {
+  display: flex;
+
+  flex-direction: column;
+
+  flex: 1;
+
+  min-width: 0;
+}
+
+
+.discogs-list__title {
+  font-size: 14px;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+
+.discogs-list__artist {
+  margin-top: 3px;
+
+  font-size: 12px;
+
+  opacity: 0.5;
+}
+
+
+.discogs-list__value {
+  font-size: 14px;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* =========================
+   WANTLIST
+========================= */
+
+.discogs-wantlist {
+  width: 100%;
+}
+
+
+.discogs-table {
+  margin-bottom: 0;
+
+  color: inherit;
+
+  th,
+  td {
+    background: transparent;
+
+    border-color: rgba(
+      255,
+      255,
+      255,
+      0.08
+    );
+  }
+
+  th {
+    font-size: 12px;
+
+    font-weight: 500;
+
+    opacity: 0.55;
+  }
+
+  td {
+    font-size: 13px;
+
+    vertical-align: middle;
+  }
+
+  &.table>:not(caption)>*>* {
+    color: #fff !important;
+    background-color: transparent !important;
+
+}
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 767px) {
+
+  .discogs-list__item {
+    gap: 0.75rem;
+  }
+
+  .discogs-list__title {
+    font-size: 13px;
+  }
+
+  .discogs-list__value {
+    font-size: 13px;
+  }
+
+}
+
+
+

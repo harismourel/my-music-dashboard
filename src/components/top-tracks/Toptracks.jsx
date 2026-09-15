@@ -2,7 +2,6 @@ import React, { useMemo, useState } from "react";
 import SpotifyBottomPlayer from "./SpotifyBottomPlayer";
 import "./TopTracks.scss";
 
-// ✅ ΜΟΝΙΜΟ mock (φαίνεται πάντα)
 const mockTopTracks = [
   { id: "77kMHM0D2MgGTjoL2308Lm", name: "Innerbloom", artist: "RÜFÜS DU SOL" },
   { id: "3ZSqMer9RLSglvi18bWXYV", name: "Sky & Sand", artist: "Paul Kalkbrenner" },

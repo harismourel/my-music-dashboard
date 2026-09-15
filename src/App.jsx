@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import SpotifyDashboard from './pages/SpotifyDashboard';
-
+import DiscogsDashboard from './pages/DiscogsDashboard';
 function App() {
   const [activeTab, setActiveTab] = useState('spotify');
 
@@ -15,7 +15,7 @@ function App() {
 
         <div className="flex-grow-1 p-4">
           {activeTab === 'spotify' && <SpotifyDashboard />}
-          {activeTab === 'discogs' && <div>Discogs dashboard coming soon</div>}
+          {activeTab === 'discogs' && <DiscogsDashboard />}
           {activeTab === 'beatport' && <div>Beatport dashboard coming soon</div>}
         </div>
       </div>
